@@ -1,6 +1,6 @@
 #
 # Author:  James Ortiz
-# File:    pyWordScraper.py
+# File:    wordAnalyzer.py
 # Purpose: This program is designed to read in a file,
 # create a list of lists, and then provide analytical
 # information 
