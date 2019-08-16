@@ -1,18 +1,10 @@
-A
-DEATH
-During
-Empire
-Empire's
-Episode
-Galactic
-HOPE
-IV
-It
-NEW
-Rebel
-Rebel
-STAR
-Starships
+####################################
+#Author: James Ortiz
+#File:   output.txt 
+####################################
+Number of times the string: a appears: 3
+Output in lexicographical (Dictionary order):
+a
 a
 a
 against
@@ -22,24 +14,38 @@ armoured
 base
 battle
 civil
+death
 destroy
+during
+empire
+empire's
 enough
 entire
+episode
 evil
 first
 from
+galactic
 have
 hidden
+hope
 is
+it
+iv
 managed
+new
 of
 period
 planet
 plans
 power
+rebel
+rebel
 secret
 space
 spies
+star
+starships
 station
 steal
 striking
