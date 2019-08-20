@@ -1,65 +1,57 @@
 ####################################
-#Author: James Ortiz
-#File:   output.txt 
+#Author: James Ortiz  
+#File:  output.txt 
 ####################################
-Number of times the string: a appears: 3
-Output in lexicographical (Dictionary order):
-a
-a
-a
-against
-an
-an
-armoured
-base
-battle
-civil
-death
-destroy
-during
-empire
-empire's
-enough
-entire
-episode
-evil
-first
-from
-galactic
-have
-hidden
-hope
-is
-it
-iv
-managed
-new
-of
-period
-planet
-plans
-power
-rebel
-rebel
-secret
-space
-spies
-star
-starships
-station
-steal
-striking
-the
-the
-the
-the
-their
-to
-to
-to
-ultimate
-victory
-war
-weapon
-with
-won
+Number of times the string: a appears: 3 time(s) 
+Output of episodeIVCrawl.txt in lexicographical (Dictionary order):
+Word/Words:       Frequency:
+           a             3
+     against             1
+          an             2
+    armoured             1
+        base             1
+      battle             1
+       civil             1
+       death             1
+     destroy             1
+      during             1
+      empire             1
+    empire's             1
+      enough             1
+      entire             1
+     episode             1
+        evil             1
+       first             1
+        from             1
+    galactic             1
+        have             1
+      hidden             1
+        hope             1
+          is             1
+          it             1
+          iv             1
+     managed             1
+         new             1
+          of             1
+      period             1
+      planet             1
+       plans             1
+       power             1
+       rebel             2
+      secret             1
+       space             1
+       spies             1
+        star             1
+   starships             1
+     station             1
+       steal             1
+    striking             1
+         the             4
+       their             1
+          to             3
+    ultimate             1
+     victory             1
+         war             1
+      weapon             1
+        with             1
+         won             1
