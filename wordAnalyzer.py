@@ -1,11 +1,15 @@
-#
+#========================================================
 # Author:  James Ortiz
 # File:    wordAnalyzer.py
-# Purpose: This program is designed to read in a file,
+# Description: This program is designed to read in a file,
 # create a list of lists, and then provide analytical
-# information.
+# information about the text for the user.
 # Compile: python3 wordAnalyzer.py
-#
+#=========================================================
+
+#Used for file authentication:
+import os.path
+import sys
 
 # function lexicographicalSort(str)
 # Python function to sort the words in lexicographical 
@@ -13,9 +17,8 @@
 # input: a valid string 'str' type
 # returns: a lexicographically sorted list
 
-
 def lexicographicalSort(myList): 
-    # Split the myList till where space is found. 
+    # Split the List where space is found. 
     words = myList.split() 
     # sort() will sort the strings. 
     words.sort() 
@@ -38,15 +41,14 @@ def wordCounter(strng, mylist):
 
 
 
-# function map_writing(list)
+# function map_book(list)
 # Python function to create 
 # hash-map from a list.
 # Returns: a hash-map (dictionary)
 def map_book(mylist):
-
     #Declare empty hash-map:
     hash_map = {}
-
+    
     if mylist is not None:
         for element in mylist:
             #Remove Punctuation:
@@ -68,71 +70,220 @@ def map_book(mylist):
 
 
 def main():
-
-    #Display Menu:
+    
     print("Welcome to the Word Analyzer!")
-    fileNameInput = input("Please enter an input(.txt) file: ")
-    fileNameOutput = input("Please enter an output(.txt) file: ")
-    stringValue = input("Enter a word you want to find the frequency of: ")
+    fileNameInput = input("Please enter a file you want to analyze: ")
+    if os.path.exists(fileNameInput):
+        print("Excellent, reading file: " + fileNameInput)
+        file = open(fileNameInput, 'r')
+        text = file.read().strip()
+        file.close()
+    else:
+        print("Cannot find file: " + fileNameInput)
+        print("Closing program...")
+        sys.exit() #Early Exit
+        
+    print("-----------------------------------------------------------")
+    print("========================Main Menu==========================")
+    print("-----------------------------------------------------------")
+    print("Please select an option: ----------------------------------")
+    print("Display words in normal order --------------------------(n)")
+    print("Display words in reverse order -------------------------(r)")
+    print("Display words in lexicographical order -----------------(l)")
+    print("Analyze number of consonants in file ------------------(nc)")
+    print("Analyze number of vowels in file ----------------------(nv)")
+    print("Show frequency of words mapped in normal order --------(nf)")
+    print("Show frequency of words mapped in reverse order -------(rf)")
+    print("Show frequency of words mapped in lex. order ----------(lf)")
+    print("Show frequency of one word in file --------------------(ow)")
+    print("Exit program ------------------------------------------(ep)")
+    #Gain input from user:
+    selectOption = input("Please select a value: ")
 
-
+    if selectOption  == "n" or selectOption == "N":
+        #Display words in normal order
+        print("Words in normal order (preserving case):")
+        
+        #Create a single string from the list
+        nString = ""
+        nString = text
+        nString = nString.split()
+        s = " "
+        s = s.join(nString)
+        s = s.replace(' ', '\n')
+        print(s)
+        sys.exit()
+    elif selectOption == "r" or selectOption == "R":
+        #Display words in reverse order,
+        #preserving case:
+        print("Words in reverse: (preserving case)")
+        nString = ""
+        nString = text
+        nString = nString.split()
+        #for elem in reversed(nString):
+        #    print(elem)
+        nString.reverse()
+        s = " "
+        s = s.join(nString)
+        s = s. replace(' ', '\n')
+        print(s)
+        sys.exit()
+    elif selectOption == "l" or selectOption == "L":
+        #Display result lexicographically:
+        print("Words in lexicographical order:")
+        nString = ""
+        nString = text.lower()
+        nString = lexicographicalSort(nString)
+        s = " "
+        s = s.join(nString)
+        s = s.replace(' ', '\n')
+        print(s)
+        sys.exit()
+    elif selectOption == "nc" or selectOption == "NC":
+        #Display all consonants in text:
+        print("Number of consonants in the text")
+        consonants  = 0
+        chartrs = 0
+        nString = ""
+        nString = text.lower()
+        nString = nString.split()
+        s = ""
+        s = s.join(nString)
+        for elem in s:
+            if elem != 'a' and elem != 'e' and elem != 'i' and elem != 'o' and elem != 'u':
+                consonants = consonants + 1
+                chartrs = chartrs + 1
+            else:
+                chartrs = chartrs + 1
+        
+        print("There is a total of: " + str(consonants) + " consonant(s).")
+        print("Out of " + str(chartrs) + " characters.")
+        sys.exit()
+    elif selectOption == "nv" or selectOption == "NV":
+        #Display all vowels in text:
+        print("Number of vowels in the text")
+        vowels = 0
+        chartrs = 0
+        nString = ""
+        nString = text.lower()
+        nString = nString.split()
+        s = ""
+        s = s.join(nString)
+        for elem in s:
+            if elem == 'a' or elem == 'e' or elem == 'i' or elem == 'o' or elem == 'u':
+              vowels = vowels + 1
+              chartrs = chartrs + 1
+            else:
+                chartrs = chartrs + 1
+        print("There is a total of: " + str(vowels) + " vowel(s).")
+        print("Out of " + str(chartrs) + " characters.")
+        sys.exit()
+    elif selectOption == "nf" or selectOption == "NF":
+        #Display the frequency of words mapped in normal order
+        print("Frequency of words mapped in normal order")
+        nString = ""
+        nString = text.lower()
+        nString = nString.split()
+        HashMap = map_book(nString)
+        for key, value in HashMap.items():
+            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+            print(pValues)
+        sys.exit()
+    elif selectOption == "rf" or selectOption == "RF":
+        #Display the frequency of words mapped in reverse order
+        print("Frequency of words mapped in reverse order")
+        nString = ""
+        nString = text.lower()
+        nString.reverse()
+        nString = nString.split()
+        HashMap = map_book(nString)
+        for key, value in HashMap.items():
+            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+            print(pValues)
+        sys.exit()
+    elif selectOption == "lf" or selectOption == "LF":
+        print("Frequency of words mapped in lexicographical order")
+        nString = ""
+        nString = text.lower()
+        nString = lexicographicalSort(nString)
+        HashMap = map_book(nString)
+        for key, value in HashMap.items():
+            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+            print(pValues)
+        sys.exit()
+    elif selectOption == "ow" or selectOption == "OW":
+        #Find the frequency of one word in the text:
+        print("Frequency of the word in the text")
+        wordValue = input("Please enter a word: ")
+        wordValue = wordValue.lower()
+        nString = ""
+        nString = text.lower()
+        nString = lexicographicalSort(nString)
+        numWords = wordCounter(wordValue, nString)
+        print("The number of words identical to " + str(wordValue) + " is " + str(numWords))
+        sys.exit()
+    elif selectOption == "ep" or selectOption == "EP":
+        #Quit program
+        print("Quitting Program...")
+        print("Thanks for using Word Analyzer!")
+        sys.exit()
     
     #Open file
-    file = open(fileNameInput, 'r')
+   # file = open(fileNameInput, 'r')
     # Read from file, strip result, assinging to text
-    text = file.read().strip()
+   # text = file.read().strip()
     # Close file:
-    file.close()
+  #  file.close()
 
     #Bring letters down to lower-case:
-    nString = ""
-    nString = text.lower()
+  #  nString = ""
+  #  nString = text.lower()
 
     #Sort list lexicographically, return list:
-    nString = lexicographicalSort(nString)
+  #  nString = lexicographicalSort(nString)
     #print(nString)
 
     #Create Hash-Map from same list:
-    HashMap = map_book(nString)
+  #  HashMap = map_book(nString)
     
-    numStrng = wordCounter(stringValue, nString)
+  #  numStrng = wordCounter(stringValue, nString)
     
     #Create a single string from the list:
-    s = " "
-    s = s.join(nString)
+ #   s = " "
+ #   s = s.join(nString)
 
 
-    freq = "Number of times the string: " + stringValue + " appears: " \
-           + str(numStrng) + " time(s) \n"
+ #   freq = "Number of times the string: " + stringValue + " appears: " \
+   #        + str(numStrng) + " time(s) \n"
 
-    header = "####################################\n" \
-             "#Author: James Ortiz  \n" \
-             "#File:  " + fileNameOutput + " \n" \
-             "####################################\n"
+  #  header = "####################################\n" \
+  #           "#Author: James Ortiz  \n" \
+  #           "#File:  " + fileNameOutput + " \n" \
+  #           "####################################\n"
 
-    lexi = "Output of " + fileNameInput + " in lexicographical (Dictionary order):\n"
+ #   lexi = "Output of " + fileNameInput + " in lexicographical (Dictionary order):\n"
 
-    displayHeader = "Word/Words:       Frequency:\n"
+  #  displayHeader = "Word/Words:       Frequency:\n"
     
-    reverse = "Output in reverse order:\n"
+ #   reverse = "Output in reverse order:\n"
     
-    #Make the string output each character with new line
+ #   #Make the string output each character with new line
     #s = s.replace(' ', '\n')
     
     #Open/create new file called 'output.txt'
-    outputFile = open(fileNameOutput, 'w')
+ #   outputFile = open(fileNameOutput, 'w')
     #Write information to file:
-    outputFile.write(header)
-    outputFile.write(freq)
-    outputFile.write(lexi)
-    outputFile.write(displayHeader)
+#    outputFile.write(header)
+#    outputFile.write(freq)
+#    outputFile.write(lexi)
+#    outputFile.write(displayHeader)
     
-    for key, value in HashMap.items():
+#    for key, value in HashMap.items():
         #print values at alignment:
-        pValues = '{:>12}  {:>12}\n'.format(str(key), str(value))
-        outputFile.write(pValues)  
-    outputFile.close()  #close file
-    print("Analysis Complete...")
-    
+#        pValues = '{:>12}  {:>12}\n'.format(str(key), str(value))
+#        outputFile.write(pValues)  
+#    outputFile.close()  #close file
+#    print("Analysis Complete...")
+
 if __name__ == "__main__":
     main()
