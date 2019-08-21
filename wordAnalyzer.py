@@ -65,8 +65,115 @@ def map_book(mylist):
     else:
         return None
 
-            
-    
+
+def dispInNormalOrder(text):
+     print("Text in normal order (preserving case):")
+     #Create a single string from the list
+     nString = ""
+     nString = text
+     nString = nString.split()
+     s = " "
+     s = s.join(nString)
+     s = s.replace(' ', '\n')
+     return s
+
+def dispInReverseOrder(text):
+    print("Text in reverse: (preserving case)")
+    nString = ""
+    nString = text
+    nString = nString.split()
+    nString.reverse() #set words in reverse order
+    s = " "
+    s = s.join(nString)
+    s = s. replace(' ', '\n')
+    return s
+
+def dispInLexOrder(text):
+    print("Text in lexicographical order:")
+    nString = ""
+    nString = text.lower()
+    nString = lexicographicalSort(nString)
+    s = " "
+    s = s.join(nString)
+    s = s.replace(' ', '\n')
+    return s
+
+def dispAllCons(text):
+     print("Number of consonants in the text")
+     consonants  = 0
+     chartrs = 0
+     nString = ""
+     nString = text.lower()
+     nString = nString.split()
+     s = ""
+     s = s.join(nString)
+     for elem in s:
+         if elem != 'a' and elem != 'e' and elem != 'i' and elem != 'o' and elem != 'u':
+             consonants = consonants + 1
+             chartrs = chartrs + 1
+         else:
+             chartrs = chartrs + 1
+        
+        print("There is a total of: " + str(consonants) + " consonant(s).")
+        print("Out of " + str(chartrs) + " characters.")
+    return
+
+
+def dispAllVowels(text):
+     print("Number of vowels in the text")
+     vowels = 0
+     chartrs = 0
+     nString = ""
+     nString = text.lower()
+     nString = nString.split()
+     s = ""
+     s = s.join(nString)
+     for elem in s:
+         if elem == 'a' or elem == 'e' or elem == 'i' or elem == 'o' or elem == 'u':
+             vowels = vowels + 1
+             chartrs = chartrs + 1
+         else:
+             chartrs = chartrs + 1
+    print("There is a total of: " + str(vowels) + " vowel(s).")
+    print("Out of " + str(chartrs) + " characters.")
+    return
+
+def freqOfWordsNormal(text):
+      print("Frequency of words mapped in normal order")
+      nString = ""
+      nString = text.lower()
+      nString = nString.split()
+      HashMap = map_book(nString)
+      return HashMap
+
+def freqOfWordsReverse(text):
+    print("Frequency of words mapped in reverse order")
+    nString = ""
+    nString = text.lower()
+    nString.reverse()
+    nString = nString.split()
+    HashMap = map_book(nString)
+    return HashMap
+
+def freqOfWordsLex(text):
+    print("Frequency of words mapped in lexicographical order")
+    nString = ""
+    nString = text.lower()
+    nString = lexicographicalSort(nString)
+    HashMap = map_book(nString)
+    return HashMap
+
+
+def freqOfWord(text):
+     print("Frequency of the word in the text")
+     wordValue = input("Please enter a word: ")
+     wordValue = wordValue.lower()
+     nString = ""
+     nString = text.lower()
+     nString = lexicographicalSort(nString)
+     numWords = wordCounter(wordValue, nString)
+     print("The number of words identical to " + str(wordValue) + " is " + str(numWords))
+     return
 
 
 def main():
@@ -101,132 +208,63 @@ def main():
     selectOption = input("Please select a value: ")
 
     if selectOption  == "n" or selectOption == "N":
-        #Display words in normal order
-        print("Words in normal order (preserving case):")
-        
-        #Create a single string from the list
-        nString = ""
-        nString = text
-        nString = nString.split()
-        s = " "
-        s = s.join(nString)
-        s = s.replace(' ', '\n')
+        #Display words in normal order (preserving case)
+        s = dispInNormalOrder(text)
         print(s)
         sys.exit()
     elif selectOption == "r" or selectOption == "R":
         #Display words in reverse order,
         #preserving case:
-        print("Words in reverse: (preserving case)")
-        nString = ""
-        nString = text
-        nString = nString.split()
-        #for elem in reversed(nString):
-        #    print(elem)
-        nString.reverse()
-        s = " "
-        s = s.join(nString)
-        s = s. replace(' ', '\n')
+        s = dispInReverseOrder(text)
         print(s)
         sys.exit()
     elif selectOption == "l" or selectOption == "L":
         #Display result lexicographically:
-        print("Words in lexicographical order:")
-        nString = ""
-        nString = text.lower()
-        nString = lexicographicalSort(nString)
-        s = " "
-        s = s.join(nString)
-        s = s.replace(' ', '\n')
+        s = dispInLexOrder(text)
         print(s)
         sys.exit()
     elif selectOption == "nc" or selectOption == "NC":
         #Display all consonants in text:
-        print("Number of consonants in the text")
-        consonants  = 0
-        chartrs = 0
-        nString = ""
-        nString = text.lower()
-        nString = nString.split()
-        s = ""
-        s = s.join(nString)
-        for elem in s:
-            if elem != 'a' and elem != 'e' and elem != 'i' and elem != 'o' and elem != 'u':
-                consonants = consonants + 1
-                chartrs = chartrs + 1
-            else:
-                chartrs = chartrs + 1
-        
-        print("There is a total of: " + str(consonants) + " consonant(s).")
-        print("Out of " + str(chartrs) + " characters.")
+        dispAllCons(text)
         sys.exit()
     elif selectOption == "nv" or selectOption == "NV":
         #Display all vowels in text:
-        print("Number of vowels in the text")
-        vowels = 0
-        chartrs = 0
-        nString = ""
-        nString = text.lower()
-        nString = nString.split()
-        s = ""
-        s = s.join(nString)
-        for elem in s:
-            if elem == 'a' or elem == 'e' or elem == 'i' or elem == 'o' or elem == 'u':
-              vowels = vowels + 1
-              chartrs = chartrs + 1
-            else:
-                chartrs = chartrs + 1
-        print("There is a total of: " + str(vowels) + " vowel(s).")
-        print("Out of " + str(chartrs) + " characters.")
+        dispAllVowels(text)
         sys.exit()
     elif selectOption == "nf" or selectOption == "NF":
         #Display the frequency of words mapped in normal order
-        print("Frequency of words mapped in normal order")
-        nString = ""
-        nString = text.lower()
-        nString = nString.split()
-        HashMap = map_book(nString)
-        for key, value in HashMap.items():
+        NMap = freqOfWordsNormal(text)
+        for key, value in NMap.items():
             pValues = '{:>12}  {:>12}'.format(str(key), str(value))
             print(pValues)
         sys.exit()
     elif selectOption == "rf" or selectOption == "RF":
         #Display the frequency of words mapped in reverse order
-        print("Frequency of words mapped in reverse order")
-        nString = ""
-        nString = text.lower()
-        nString.reverse()
-        nString = nString.split()
-        HashMap = map_book(nString)
-        for key, value in HashMap.items():
+        NMap = freqOfWordsReverse(text)
+        for key, value in NMap.items():
             pValues = '{:>12}  {:>12}'.format(str(key), str(value))
             print(pValues)
         sys.exit()
     elif selectOption == "lf" or selectOption == "LF":
-        print("Frequency of words mapped in lexicographical order")
-        nString = ""
-        nString = text.lower()
-        nString = lexicographicalSort(nString)
-        HashMap = map_book(nString)
-        for key, value in HashMap.items():
+        #Display frequency of words in lex. order
+        NMap = freqOfWordsLex(text)
+        for key, value in NMap.items():
             pValues = '{:>12}  {:>12}'.format(str(key), str(value))
             print(pValues)
         sys.exit()
     elif selectOption == "ow" or selectOption == "OW":
         #Find the frequency of one word in the text:
-        print("Frequency of the word in the text")
-        wordValue = input("Please enter a word: ")
-        wordValue = wordValue.lower()
-        nString = ""
-        nString = text.lower()
-        nString = lexicographicalSort(nString)
-        numWords = wordCounter(wordValue, nString)
-        print("The number of words identical to " + str(wordValue) + " is " + str(numWords))
+        freqOfWord(text)
         sys.exit()
     elif selectOption == "ep" or selectOption == "EP":
         #Quit program
         print("Quitting Program...")
         print("Thanks for using Word Analyzer!")
         sys.exit()
+    else:
+        print("Erroneous Input, try again")
+        sys.exit()
+        
     
     #Open file
    # file = open(fileNameInput, 'r')
