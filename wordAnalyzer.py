@@ -114,26 +114,26 @@ def dispAllCons(text):
          else:
              chartrs = chartrs + 1
         
-        print("There is a total of: " + str(consonants) + " consonant(s).")
-        print("Out of " + str(chartrs) + " characters.")
-    return
+     print("There is a total of: " + str(consonants) + " consonant(s).")
+     print("Out of " + str(chartrs) + " characters.")
+     return
 
 
 def dispAllVowels(text):
-     print("Number of vowels in the text")
-     vowels = 0
-     chartrs = 0
-     nString = ""
-     nString = text.lower()
-     nString = nString.split()
-     s = ""
-     s = s.join(nString)
-     for elem in s:
-         if elem == 'a' or elem == 'e' or elem == 'i' or elem == 'o' or elem == 'u':
-             vowels = vowels + 1
-             chartrs = chartrs + 1
-         else:
-             chartrs = chartrs + 1
+    print("Number of vowels in the text")
+    vowels = 0
+    chartrs = 0
+    nString = ""
+    nString = text.lower()
+    nString = nString.split()
+    s = ""
+    s = s.join(nString)
+    for elem in s:
+        if elem == 'a' or elem == 'e' or elem == 'i' or elem == 'o' or elem == 'u':
+            vowels = vowels + 1
+            chartrs = chartrs + 1
+        else:
+            chartrs = chartrs + 1
     print("There is a total of: " + str(vowels) + " vowel(s).")
     print("Out of " + str(chartrs) + " characters.")
     return
@@ -190,138 +190,166 @@ def main():
         print("Closing program...")
         sys.exit() #Early Exit
         
-    print("-----------------------------------------------------------")
-    print("========================Main Menu==========================")
-    print("-----------------------------------------------------------")
-    print("Please select an option: ----------------------------------")
-    print("Display words in normal order --------------------------(n)")
-    print("Display words in reverse order -------------------------(r)")
-    print("Display words in lexicographical order -----------------(l)")
-    print("Analyze number of consonants in file ------------------(nc)")
-    print("Analyze number of vowels in file ----------------------(nv)")
-    print("Show frequency of words mapped in normal order --------(nf)")
-    print("Show frequency of words mapped in reverse order -------(rf)")
-    print("Show frequency of words mapped in lex. order ----------(lf)")
-    print("Show frequency of one word in file --------------------(ow)")
-    print("Exit program ------------------------------------------(ep)")
-    #Gain input from user:
-    selectOption = input("Please select a value: ")
-
-    if selectOption  == "n" or selectOption == "N":
-        #Display words in normal order (preserving case)
-        s = dispInNormalOrder(text)
-        print(s)
-        sys.exit()
-    elif selectOption == "r" or selectOption == "R":
-        #Display words in reverse order,
-        #preserving case:
-        s = dispInReverseOrder(text)
-        print(s)
-        sys.exit()
-    elif selectOption == "l" or selectOption == "L":
-        #Display result lexicographically:
-        s = dispInLexOrder(text)
-        print(s)
-        sys.exit()
-    elif selectOption == "nc" or selectOption == "NC":
-        #Display all consonants in text:
-        dispAllCons(text)
-        sys.exit()
-    elif selectOption == "nv" or selectOption == "NV":
-        #Display all vowels in text:
-        dispAllVowels(text)
-        sys.exit()
-    elif selectOption == "nf" or selectOption == "NF":
-        #Display the frequency of words mapped in normal order
-        NMap = freqOfWordsNormal(text)
-        for key, value in NMap.items():
-            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
-            print(pValues)
-        sys.exit()
-    elif selectOption == "rf" or selectOption == "RF":
-        #Display the frequency of words mapped in reverse order
-        NMap = freqOfWordsReverse(text)
-        for key, value in NMap.items():
-            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
-            print(pValues)
-        sys.exit()
-    elif selectOption == "lf" or selectOption == "LF":
-        #Display frequency of words in lex. order
-        NMap = freqOfWordsLex(text)
-        for key, value in NMap.items():
-            pValues = '{:>12}  {:>12}'.format(str(key), str(value))
-            print(pValues)
-        sys.exit()
-    elif selectOption == "ow" or selectOption == "OW":
-        #Find the frequency of one word in the text:
-        freqOfWord(text)
-        sys.exit()
-    elif selectOption == "ep" or selectOption == "EP":
-        #Quit program
-        print("Quitting Program...")
-        print("Thanks for using Word Analyzer!")
-        sys.exit()
-    else:
-        print("Erroneous Input, try again")
-        sys.exit()
         
+        
+    doContinue = True
+        
+
+
+
+
+    while True:
+        print("-----------------------------------------------------------")
+        print("========================Main Menu==========================")
+        print("-----------------------------------------------------------")
+        print("Please select an option: ----------------------------------")
+        print("Display words in normal order --------------------------(n)")
+        print("Display words in reverse order -------------------------(r)")
+        print("Display words in lexicographical order -----------------(l)")
+        print("Analyze number of consonants in file ------------------(nc)")
+        print("Analyze number of vowels in file ----------------------(nv)")
+        print("Show frequency of words mapped in normal order --------(nf)")
+        print("Show frequency of words mapped in reverse order -------(rf)")
+        print("Show frequency of words mapped in lex. order ----------(lf)")
+        print("Show frequency of one word in file --------------------(ow)")
+        print("Exit program ------------------------------------------(ep)")
     
-    #Open file
-   # file = open(fileNameInput, 'r')
-    # Read from file, strip result, assinging to text
-   # text = file.read().strip()
-    # Close file:
-  #  file.close()
+        #Gain input from user:
+        selectOption = input("Please select a value: ")
+        
+        if selectOption  == "n" or selectOption == "N":
+            #Display words in normal order (preserving case)
+            s = dispInNormalOrder(text)
+            print(s)
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+                
+        elif selectOption == "r" or selectOption == "R":
+            #Display words in reverse order,
+            #preserving case:
+            s = dispInReverseOrder(text)
+            print(s)
+            
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+        
+        elif selectOption == "l" or selectOption == "L":
+            #Display result lexicographically:
+            s = dispInLexOrder(text)
+            print(s)
+            
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+                
+        elif selectOption == "nc" or selectOption == "NC":
+            #Display all consonants in text:
+            dispAllCons(text)
+            
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+                
+        elif selectOption == "nv" or selectOption == "NV":
+            #Display all vowels in text:
+            dispAllVowels(text)
+            
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+                
+                
+        elif selectOption == "nf" or selectOption == "NF":
+            #Display the frequency of words mapped in normal order
+            NMap = freqOfWordsNormal(text)
+            for key, value in NMap.items():
+                pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+                print(pValues)
+                
+                
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+                
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+                    
+        elif selectOption == "rf" or selectOption == "RF":
+        #Display the frequency of words mapped in reverse order
+            NMap = freqOfWordsReverse(text)
+            for key, value in NMap.items():
+                pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+                print(pValues)
+                
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
 
-    #Bring letters down to lower-case:
-  #  nString = ""
-  #  nString = text.lower()
+            if proceed == "y":
+                doContinue = True
+            else:
+                sys.exit()
+            
+        elif selectOption == "lf" or selectOption == "LF":
+            #Display frequency of words in lex. order
+            NMap = freqOfWordsLex(text)
+            for key, value in NMap.items():
+                pValues = '{:>12}  {:>12}'.format(str(key), str(value))
+                print(pValues)
 
-    #Sort list lexicographically, return list:
-  #  nString = lexicographicalSort(nString)
-    #print(nString)
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
 
-    #Create Hash-Map from same list:
-  #  HashMap = map_book(nString)
+            if proceed == "y":
+                doContinue = True
+            else:
+                sys.exit()
     
-  #  numStrng = wordCounter(stringValue, nString)
-    
-    #Create a single string from the list:
- #   s = " "
- #   s = s.join(nString)
-
-
- #   freq = "Number of times the string: " + stringValue + " appears: " \
-   #        + str(numStrng) + " time(s) \n"
-
-  #  header = "####################################\n" \
-  #           "#Author: James Ortiz  \n" \
-  #           "#File:  " + fileNameOutput + " \n" \
-  #           "####################################\n"
-
- #   lexi = "Output of " + fileNameInput + " in lexicographical (Dictionary order):\n"
-
-  #  displayHeader = "Word/Words:       Frequency:\n"
-    
- #   reverse = "Output in reverse order:\n"
-    
- #   #Make the string output each character with new line
-    #s = s.replace(' ', '\n')
-    
-    #Open/create new file called 'output.txt'
- #   outputFile = open(fileNameOutput, 'w')
-    #Write information to file:
-#    outputFile.write(header)
-#    outputFile.write(freq)
-#    outputFile.write(lexi)
-#    outputFile.write(displayHeader)
-    
-#    for key, value in HashMap.items():
-        #print values at alignment:
-#        pValues = '{:>12}  {:>12}\n'.format(str(key), str(value))
-#        outputFile.write(pValues)  
-#    outputFile.close()  #close file
-#    print("Analysis Complete...")
+        elif selectOption == "ow" or selectOption == "OW":
+            #Find the frequency of one word in the text:
+            freqOfWord(text)
+            
+            proceed = input("Do you wish to continue? (Select Y/N): ")
+            proceed.lower()
+            
+            if proceed == "y":
+                continue
+            else:
+                sys.exit()
+            
+        elif selectOption == "ep" or selectOption == "EP":
+            #Quit program
+            print("Quitting Program...")
+            print("Thanks for using Word Analyzer!")
+            doContinue = False
+            sys.exit()
+        else:
+            #Otherwise, erroneous input:
+            print("Erroneous Input, try again")
+            doContinue = False
+    if(doContinue == False):
+        sys.exit()
 
 if __name__ == "__main__":
     main()
